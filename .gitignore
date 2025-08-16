@@ -8,3 +8,14 @@ db.sqlite3
 
 # Arquivos de Sistema
 .DS_Store
+
+# Virtual environment
+venv/
+
+# Django specific files
+db.sqlite3
+.env
+__pycache__/
+
+# IDE specific files
+.vscode/
