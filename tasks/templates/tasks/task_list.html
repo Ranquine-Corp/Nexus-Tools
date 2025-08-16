@@ -8,23 +8,28 @@
     <title>Minhas Tarefas</title>
 </head>
 <body>
+     <nav class="navbar">
+        <div class="nav-brand">Ranquine Corp.</div>
+        <ul class="nav-menu">
+            <li><a href="#">Tarefas</a></li>
+            <li><a href="#">Calendário</a></li>
+            <li><a href="#">Estatísticas</a></li>
+        </ul>
+        <div class="nav-user">
+            Olá, {{ user.username }}!
+        </div>
+    </nav>
 
-    <h1>Olá, {{ user.username }}!</h1>
     <h2>Minhas Tarefas</h2>
+    
+    <a href="{% url 'logout' %}">Sair</a>
+    <hr>
+    
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Adicionar Tarefa</button>
     </form>
-    <hr>
-
-    <!--* **`{{ form.as_p }}`**: Uma maneira simples e rápida do 
-    Django de renderizar um formulário. Ele cria uma tag `<p>` para 
-        cada campo do formulário.!-->
-
-    
-    <a href="{% url 'logout' %}">Sair</a>
-    
     <hr>
 
     {% if tasks %}
