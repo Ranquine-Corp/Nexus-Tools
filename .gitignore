@@ -1,0 +1,10 @@
+# Ambiente Virtual
+venv/
+
+# Arquivos do Django
+db.sqlite3
+/media
+/static
+
+# Arquivos de Sistema
+.DS_Store
