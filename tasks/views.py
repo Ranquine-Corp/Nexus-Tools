@@ -73,9 +73,9 @@ def register_user(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            # Faz o login do usuário após o registro
+            # login user
             login(request, user)
-            # Redireciona para a página inicial
+            # main page
             return redirect('task_list')
     else:
         form = CustomUserCreationForm()
