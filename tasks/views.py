@@ -3,7 +3,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Task
-from .forms import TaskForm
+from .forms import TaskForm, CustomUserCreationForm # Adicione esta importação
+from django.contrib.auth import login # Importe a função 'login'
 
 @login_required
 def task_list(request):
@@ -63,3 +64,29 @@ def delete_task(request, pk):
     
     # Redireciona para a página inicial
     return redirect('task_list')
+
+def register_user(request):
+    """
+    Exibe e processa o formulário de registro de usuário.
+    """
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            # Faz o login do usuário após o registro
+            login(request, user)
+            # Redireciona para a página inicial
+            return redirect('task_list')
+    else:
+        form = CustomUserCreationForm()
+    
+    return render(request, 'registration/register.html', {'form': form})
+
+from django.contrib.auth import logout # Importe a função 'logout'
+
+def logout_user(request):
+    """
+    Faz o logout do usuário e o redireciona para a página de login.
+    """
+    logout(request)
+    return redirect('login') # Redireciona para a rota 'login'

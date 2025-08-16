@@ -1,3 +1,6 @@
+import os
+from pathlib import Path
+
 """
 Django settings for core project.
 
@@ -122,3 +125,11 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/'
+
+STATIC_URL = 'static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+LOGOUT_REDIRECT_URL = '/'

@@ -1,7 +1,10 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>Minhas Tarefas</title>
 </head>
 <body>
@@ -20,7 +23,7 @@
         cada campo do formulário.!-->
 
     
-    <a href="#">Sair</a>
+    <a href="{% url 'logout' %}">Sair</a>
     
     <hr>
 
