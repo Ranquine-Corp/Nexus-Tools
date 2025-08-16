@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Minhas Tarefas</title>
+</head>
+<body>
+
+    <h1>Olá, {{ user.username }}!</h1>
+    <h2>Minhas Tarefas</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Adicionar Tarefa</button>
+    </form>
+    <hr>
+
+    <!--* **`{{ form.as_p }}`**: Uma maneira simples e rápida do 
+    Django de renderizar um formulário. Ele cria uma tag `<p>` para 
+        cada campo do formulário.!-->
+
+    
+    <a href="#">Sair</a>
+    
+    <hr>
+
+    {% if tasks %}
+        <ul>
+        {% for task in tasks %}
+            <li>
+                <a href="{% url 'update_task' task.pk %}">
+                    {{ task.title }}
+                </a>
+                
+                {% if task.completed %}
+                    - [Concluída]
+                {% endif %}
+
+                <a href="{% url 'delete_task' task.pk %}">
+                    (Excluir)
+                </a>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>Você ainda não tem tarefas. Que tal adicionar uma?</p>
+    {% endif %}
+
+</body>
+</html> 
